@@ -8,6 +8,6 @@ android:layout_height="wrap_content">
     style="@style/AppTheme.PinCodeButton"
     android:layout_gravity="center"
     android:scaleType="centerInside"
-    android:src="@drawable/ic_backspace_black_24dp" />
+    android:src="@drawable/ic_eraser" />
 
 </FrameLayout>

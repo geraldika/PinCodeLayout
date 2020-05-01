@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PinCodeLayout</string>
+    <string name="create_pin_code">Create pin code</string>
 </resources>

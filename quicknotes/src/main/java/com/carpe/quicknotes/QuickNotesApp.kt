@@ -39,8 +39,3 @@ class QuickNotesApp : Application() {
         }
     }
 }
-
-//todo
-//fingerprint
-//points
-//lastic

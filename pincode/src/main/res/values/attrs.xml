@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="PinCodeLayout">
-        <attr name="maxDigits" format="integer" />
-        <attr name="tintActive" format="reference" />
-        <attr name="tintInactive" format="reference" />
+        <attr name="maxDigits" format="integer" />¬
         <attr name="backgroundColor" format="reference" />
+
+        <attr name="drawableDigit" format="reference" />
+        <attr name="drawableDotInactive" format="reference" />
+        <attr name="drawableDotActive" format="reference" />
+
+        <attr name="drawableFingerPrintEnable" format="reference" />
+        <attr name="drawableFingerPrintDisable" format="reference" />
+
+        <attr name="drawableEraser" format="reference" />
+        <attr name="createPinCodeText" format="string" />
     </declare-styleable>
 </resources>

@@ -2,6 +2,7 @@ package com.carpe.quicknotes.model
 
 import com.carpe.pincodelayout.model.IPinCodeInteractor
 import io.reactivex.Completable
+import io.reactivex.Single
 import javax.inject.Inject
 
 class PinCodeInteractor @Inject constructor(
@@ -12,10 +13,10 @@ class PinCodeInteractor @Inject constructor(
     }
 
     override fun setPinCode(): Completable {
-        TODO("Not yet implemented")
+        return Completable.complete()
     }
 
-    override fun checkPinCode(): Completable {
-        TODO("Not yet implemented")
+    override fun checkPinCode(): Single<Boolean> {
+        return Single.just(true)
     }
 }

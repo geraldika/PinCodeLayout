@@ -3,19 +3,23 @@ package com.carpe.pincodelayout.presentation
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.carpe.pincodelayout.R
+import com.carpe.pincodelayout.drawable
 import com.carpe.pincodelayout.model.PinCodeItem
 import com.carpe.pincodelayout.model.PinCodeItem.Companion.TYPE_DIGIT
 import com.carpe.pincodelayout.model.PinCodeItem.Companion.TYPE_ERASER
-import com.carpe.pincodelayout.presentation.PinCodeAdapter.Companion.NO_COLOR_FILTER
 import kotlinx.android.synthetic.main.layout_digit_item.view.*
 import kotlinx.android.synthetic.main.layout_erase_item.view.*
 import kotlinx.android.synthetic.main.layout_finger_print_item.view.*
 
 class PinCodeAdapter(
+    @DrawableRes private var drawableDigitRes: Int,
+    @DrawableRes private var drawableFingerPrintEnableRes: Int,
+    @DrawableRes private var drawableFingerPrintDisableRes: Int,
+    @DrawableRes private var drawableEraserRes: Int,
     private val onItemClickListener: ((PinCodeItem) -> (Unit))
 ) : RecyclerView.Adapter<BasePinCodeViewHolder>() {
 
@@ -27,9 +31,6 @@ class PinCodeAdapter(
                 notifyDataSetChanged()
             }
         }
-
-    @ColorInt
-    var pinCodeItemColorFilter: Int = NO_COLOR_FILTER
 
     override fun getItemViewType(position: Int): Int {
         val item = items[position]
@@ -50,7 +51,7 @@ class PinCodeAdapter(
                     R.layout.layout_digit_item
                 ),
                 onItemClickListener,
-                pinCodeItemColorFilter
+                drawableDigitRes
             )
             ITEM_TYPE_ERASER -> EraseViewHolder(
                 inflateView(
@@ -58,7 +59,8 @@ class PinCodeAdapter(
                     R.layout.layout_erase_item
                 ),
                 onItemClickListener,
-                pinCodeItemColorFilter
+                drawableDigitRes,
+                drawableEraserRes
             )
             else -> FingerPrintViewHolder(
                 inflateView(
@@ -66,7 +68,9 @@ class PinCodeAdapter(
                     R.layout.layout_finger_print_item
                 ),
                 onItemClickListener,
-                pinCodeItemColorFilter
+                drawableDigitRes,
+                drawableFingerPrintEnableRes,
+                drawableFingerPrintDisableRes
             )
         }
     }
@@ -91,7 +95,7 @@ class PinCodeAdapter(
 abstract class BasePinCodeViewHolder(
     view: View,
     private val onItemClickListener: (PinCodeItem) -> (Unit),
-    @ColorInt val colorFilter: Int
+    @DrawableRes open val drawableDigitRes: Int
 ) : RecyclerView.ViewHolder(view) {
     open fun bind(item: PinCodeItem) {
         itemView.setOnClickListener { onItemClickListener.invoke(item) }
@@ -101,14 +105,14 @@ abstract class BasePinCodeViewHolder(
 class DigitViewHolder(
     view: View,
     private val onItemClickListener: (PinCodeItem) -> (Unit),
-    @ColorInt colorFilter: Int
-) : BasePinCodeViewHolder(view, onItemClickListener, colorFilter) {
+    @DrawableRes override val drawableDigitRes: Int
+) : BasePinCodeViewHolder(view, onItemClickListener, drawableDigitRes) {
     override fun bind(item: PinCodeItem) {
         super.bind(item)
         with(itemView) {
             digitButton.text = (item as PinCodeItem.Digit).digit.toString()
             digitButton.setOnClickListener { onItemClickListener.invoke(item) }
-            if (colorFilter != NO_COLOR_FILTER) digitButton.setTextColor(colorFilter)
+            digitButton.background = context.drawable(drawableDigitRes)
         }
     }
 }
@@ -116,12 +120,14 @@ class DigitViewHolder(
 class EraseViewHolder(
     view: View,
     private val onItemClickListener: (PinCodeItem) -> (Unit),
-    @ColorInt colorFilter: Int
-) : BasePinCodeViewHolder(view, onItemClickListener, colorFilter) {
+    @DrawableRes override val drawableDigitRes: Int,
+    @DrawableRes private var drawableEraserRes: Int
+) : BasePinCodeViewHolder(view, onItemClickListener, drawableDigitRes) {
     override fun bind(item: PinCodeItem) {
         super.bind(item)
         with(itemView) {
-            if (colorFilter != NO_COLOR_FILTER) itemView.eraseImageView.setColorFilter(colorFilter)
+            eraseImageView.background = context.drawable(drawableDigitRes)
+            eraseImageView.setImageDrawable(context.drawable(drawableEraserRes))
             eraseImageView.setOnClickListener { onItemClickListener.invoke(item) }
         }
     }
@@ -130,10 +136,20 @@ class EraseViewHolder(
 class FingerPrintViewHolder(
     view: View,
     onItemClickListener: (PinCodeItem) -> (Unit),
-    @ColorInt colorFilter: Int
-) : BasePinCodeViewHolder(view, onItemClickListener, colorFilter) {
+    @DrawableRes override val drawableDigitRes: Int,
+    @DrawableRes private var drawableFingerPrintEnableRes: Int,
+    @DrawableRes private var drawableFingerPrintDisableRes: Int
+) : BasePinCodeViewHolder(view, onItemClickListener, drawableDigitRes) {
     override fun bind(item: PinCodeItem) {
         super.bind(item)
-        if (colorFilter != NO_COLOR_FILTER) itemView.fingerPrintImageView.setColorFilter(colorFilter)
+        with(itemView) {
+            fingerPrintImageView.background = context.drawable(drawableDigitRes)
+            val drawableRes = if ((item as PinCodeItem.FingerPrint).enable) {
+                drawableFingerPrintEnableRes
+            } else {
+                drawableFingerPrintDisableRes
+            }
+            fingerPrintImageView.setImageDrawable(context.drawable(drawableRes))
+        }
     }
 }

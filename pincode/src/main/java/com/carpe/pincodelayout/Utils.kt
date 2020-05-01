@@ -10,7 +10,7 @@ object Utils {
         PinCodeItem.Digit(it) as PinCodeItem
     }.toMutableList()
         .apply {
-            add(9, PinCodeItem.FingerPrint())
+            add(9, PinCodeItem.FingerPrint(true))
             add(11, PinCodeItem.Eraser())
         }
 }
