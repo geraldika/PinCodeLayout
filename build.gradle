@@ -1,0 +1,269 @@
+buildscript {
+    ext.kotlin_version = '1.3.71'
+    repositories {
+        google()
+        jcenter()
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+
+        ext {
+            APPLICATION_ID = "app.pincode.main"
+
+            MINIMUM_SDK_VERSION = 19
+            TARGET_SDK_VERSION = 28
+            COMPILE_SDK_VERSION = 28
+            BUILD_TOOLS_VERSION = "28.0.3"
+
+            kotlinVersions = [
+                    stdlib: '1.3.50'
+            ]
+
+            supportVersions = [
+                    design          : '1.1.0',
+                    annotations     : '1.1.0',
+                    dynamicanimation: '1.0.0',
+                    appcompat       : '1.1.0',
+                    recyclerview    : '1.1.0',
+                    cardview        : '1.0.0',
+                    constraintLayout: '1.1.3',
+                    multidex        : '2.0.1',
+                    androidx        : '1.2.0',
+                    androidxfragment: '1.2.2',
+                    paging          : '2.1.1'
+            ]
+
+            libsVersions = [
+                    crashlytics      : '2.10.1@aar',
+                    networking       : '1.0.2',
+                    rvAnimations     : '2.3.0',
+                    picasso          : '2.5.2',
+                    glide            : '4.10.0',
+                    rxKotlin         : '2.4.0',
+                    rxAndroid        : '2.1.1',
+                    paging           : '1.0.1',
+                    recyclerAnimators: '2.3.0',
+                    retrofit         : '2.4.0',
+                    facebook         : '[5,6)',
+                    okhttp           : '3.11.0',
+                    okhttp3downloader: '1.1.0',
+                    moxy             : '1.5.3', // don't update to version 1.5.5 until issue https://github.com/Arello-Mobile/Moxy/issues/131 won't be fixed
+                    cicerone         : '3.0.0',
+                    room             : '2.2.4',
+                    roomRx           : '2.2.4',
+                    libphonenumber   : '8.2.0',
+                    leakcanary       : '1.6.3',
+                    mopub            : '5.7.1@aar',
+                    pubmatic         : '1.3.0',
+                    amazon_ads       : '5.8.1.1',
+                    admob_ads        : '18.3.0',
+                    objenesis        : '2.6',
+                    shimmer          : '0.4.0',
+                    workRuntimeKtx   : '2.3.2',
+                    facebookAds      : '5.5.0',
+                    workRuntime      : '2.3.2',
+                    material         : '1.0.0',
+                    blurview         : '1.6.2',
+                    zxing_android    : '3.6.0',
+                    zxing            : '3.3.0',
+                    installreferrer  : '1.1.1',
+                    flurry           : '12.1.0']
+
+            authorization = '1.0.16'
+            lockscreen = '1.0.0'
+            money = '1.0.17'
+
+            appcompat = '1.1.0'
+            amazon_ads = '5.8.1.1'
+
+            core_ktx = '1.1.0'
+            constraintlayout = '1.1.3'
+            cicerone = '5.0.0'
+            keyboard_visibility = '2.3.0'
+            crashlytics = '2.10.1'
+
+            facebook_login = '5.5.1'
+            facebook_ads = '5.5.0'
+            firebase = [
+                    core     : '17.2.0',
+                    auth     : '19.0.0',
+                    ads      : '18.2.0',
+                    config   : '19.0.0',
+                    messaging: '20.0.0'
+            ]
+
+            glide = '4.9.0'
+
+            logging_interceptor = '3.12.1'
+
+            multidex = '2.0.1'
+            material = '1.0.0'
+            moxy_x = '1.5.7'
+            mopub = '5.7.1@aar'
+
+            pinentryedittext = '2.0.6'
+            play_services = [
+                    location: '17.0.0'
+            ]
+            pubmatic = '1.3.0'
+
+            rxkotlin = '2.4.0'
+            rxandroid = '2.1.1'
+            runtime_permission = '1.1.0'
+            retrofit = [
+                    core   : '2.6.0',
+                    rxjava2: '2.6.0',
+                    gson   : '2.6.0'
+            ]
+
+            timber = '4.7.1'
+            toothpick = [
+                    runtime : '2.1.0',
+                    androidx: '2.1.0',
+                    compiler: '2.1.0'
+            ]
+
+            work_runtime_ktx = '2.2.0'
+        }
+    }
+
+    allprojects {
+        repositories {
+            google()
+            jcenter()
+
+        }
+    }
+
+
+//allprojects {
+//    repositories {
+//        google()
+//        jcenter()
+//
+//    }
+//}
+//
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
+//
+//project.ext {
+//    MINIMUM_SDK_VERSION = 19
+//    TARGET_SDK_VERSION = 28
+//    COMPILE_SDK_VERSION = 28
+//    BUILD_TOOLS_VERSION = "28.0.3"
+//
+//    kotlinVersions = [
+//            stdlib: '1.3.50'
+//    ]
+//
+//    supportVersions = [
+//            design          : '1.1.0',
+//            annotations     : '1.1.0',
+//            dynamicanimation: '1.0.0',
+//            appcompat       : '1.1.0',
+//            recyclerview    : '1.1.0',
+//            cardview        : '1.0.0',
+//            constraintLayout: '1.1.3',
+//            multidex        : '2.0.1',
+//            androidx        : '1.2.0',
+//            androidxfragment: '1.2.2',
+//            paging          : '2.1.1'
+//    ]
+//
+//    libsVersions = [
+//            crashlytics      : '2.10.1@aar',
+//            networking       : '1.0.2',
+//            rvAnimations     : '2.3.0',
+//            picasso          : '2.5.2',
+//            glide            : '4.10.0',
+//            rxKotlin         : '2.4.0',
+//            rxAndroid        : '2.1.1',
+//            paging           : '1.0.1',
+//            recyclerAnimators: '2.3.0',
+//            retrofit         : '2.4.0',
+//            facebook         : '[5,6)',
+//            okhttp           : '3.11.0',
+//            okhttp3downloader: '1.1.0',
+//            moxy             : '1.5.3', // don't update to version 1.5.5 until issue https://github.com/Arello-Mobile/Moxy/issues/131 won't be fixed
+//            cicerone         : '3.0.0',
+//            room             : '2.2.4',
+//            roomRx           : '2.2.4',
+//            libphonenumber   : '8.2.0',
+//            leakcanary       : '1.6.3',
+//            mopub            : '5.7.1@aar',
+//            pubmatic         : '1.3.0',
+//            amazon_ads       : '5.8.1.1',
+//            admob_ads        : '18.3.0',
+//            objenesis        : '2.6',
+//            shimmer          : '0.4.0',
+//            workRuntimeKtx   : '2.3.2',
+//            facebookAds      : '5.5.0',
+//            workRuntime      : '2.3.2',
+//            material         : '1.0.0',
+//            blurview         : '1.6.2',
+//            zxing_android    : '3.6.0',
+//            zxing            : '3.3.0',
+//            installreferrer  : '1.1.1',
+//            flurry           : '12.1.0',
+//
+//
+//
+//                core_ktx = '1.1.0'
+//
+//
+//                keyboard_visibility = '2.3.0'
+//                crashlytics = '2.10.1'
+//
+//                facebook_login = '5.5.1'
+//                facebook_ads = '5.5.0'
+//                firebase = [
+//                        core     : '17.2.0',
+//                        auth     : '19.0.0',
+//                        ads      : '18.2.0',
+//                        config   : '19.0.0',
+//                        messaging: '20.0.0'
+//                ]
+//
+//                glide = '4.9.0'
+//
+//                logging_interceptor = '3.12.1'
+//
+//                multidex = '2.0.1'
+//                material = '1.0.0'
+//                moxy_x = '1.5.7'
+//                mopub = '5.7.1@aar'
+//
+//                pinentryedittext = '2.0.6'
+//                play_services = [
+//                        location: '17.0.0'
+//                ]
+//                pubmatic = '1.3.0'
+//
+//                rxkotlin = '2.4.0'
+//                rxandroid = '2.1.1'
+//                runtime_permission = '1.1.0'
+//                retrofit = [
+//                        core   : '2.6.0',
+//                        rxjava2: '2.6.0',
+//                        gson   : '2.6.0'
+//                ]
+//
+//                timber = '4.7.1'
+//                toothpick = [
+//                        runtime : '2.1.0',
+//                        androidx: '2.1.0',
+//                        compiler: '2.1.0'
+//                ]
+//
+//                work_runtime_ktx = '2.2.0'
+//            }
+//    ]
+//}
