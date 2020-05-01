@@ -6,22 +6,36 @@
     android:layout_height="match_parent"
     android:background="@color/colorAccent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dotsRecyclerView"
+    <TextView
+        android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        app:layout_constraintBottom_toTopOf="@+id/pinCodeRecyclerView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/dotsRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dotsRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/pinCodeRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pinCodeRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

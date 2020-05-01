@@ -5,13 +5,16 @@
         <attr name="backgroundColor" format="reference" />
 
         <attr name="drawableDigit" format="reference" />
+        <attr name="colorDigitTint" format="reference" />
         <attr name="drawableDotInactive" format="reference" />
         <attr name="drawableDotActive" format="reference" />
 
-        <attr name="drawableFingerPrintEnable" format="reference" />
-        <attr name="drawableFingerPrintDisable" format="reference" />
+        <attr name="drawableFingerPrint" format="reference" />
+        <attr name="iconFingerPrintEnable" format="reference" />
+        <attr name="iconFingerPrintDisable" format="reference" />
+        <attr name="colorFingerPrintTint" format="reference" />
 
-        <attr name="drawableEraser" format="reference" />
-        <attr name="createPinCodeText" format="string" />
+        <attr name="iconEraser" format="reference" />
+        <attr name="titleText" format="string" />
     </declare-styleable>
 </resources>

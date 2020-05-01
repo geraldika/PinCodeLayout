@@ -8,8 +8,6 @@
         style="@style/AppTheme.PinCodeButton"
         android:padding="@dimen/finger_print_image_padding"
         android:layout_gravity="center"
-        android:scaleType="fitCenter"
-
-        android:src="@drawable/ic_fingerprint" />
+        android:scaleType="fitCenter"/>
 
 </FrameLayout>

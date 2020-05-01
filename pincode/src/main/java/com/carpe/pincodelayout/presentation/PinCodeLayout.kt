@@ -41,28 +41,37 @@ abstract class PinCodeLayout<V : PinCodeView> : PinCodeView, BaseFrameLayout {
         get() = R.layout.layout_pin_code
 
     @ColorRes
-    private var backgroundColorRes: Int = 0 //R.color.colorPrimary
+    private var backgroundColorRes: Int = 0
 
     @DrawableRes
-    private var drawableDotInactiveRes: Int = 0 //R.drawable.background_pin_code_element_inactive
+    private var drawableDotInactiveRes: Int = 0
 
     @DrawableRes
-    private var drawableDotActiveRes: Int = 0 // R.drawable.background_pin_code_element_active
+    private var drawableDotActiveRes: Int = 0
+
+    @ColorRes
+    private var colorDigitTintRes = 0
 
     @DrawableRes
-    private var drawableDigitRes = 0//R.drawable.background_digit_button
+    private var drawableDigitRes = 0
+
+    @ColorRes
+    private var colorFingerPrintTintRes = 0
 
     @DrawableRes
-    private var drawableFingerPrintEnableRes: Int = 0 //R.drawable.ic_fingerprint_black_24dp
+    private var backgroundFingerPrintRes: Int = 0
 
     @DrawableRes
-    private var drawableFingerPrintDisableRes: Int = 0 //R.drawable.ic_fingerprint_black_24dp
+    private var iconFingerPrintEnableRes: Int = 0
 
     @DrawableRes
-    private var drawableEraserRes: Int = 0 //R.drawable.ic_backspace_black_24dp
+    private var iconFingerPrintDisableRes: Int = 0
+
+    @DrawableRes
+    private var iconEraserRes: Int = 0
 
     @StringRes
-    private var createPinCodeText: Int = 0 //R.string.create_pin_code
+    private var titleRes: Int = 0
 
     private var maxDigit = 0
 
@@ -76,9 +85,12 @@ abstract class PinCodeLayout<V : PinCodeView> : PinCodeView, BaseFrameLayout {
     private val pinCodeAdapter: PinCodeAdapter by lazy {
         PinCodeAdapter(
             drawableDigitRes = drawableDigitRes,
-            drawableFingerPrintEnableRes = drawableFingerPrintEnableRes,
-            drawableFingerPrintDisableRes = drawableFingerPrintDisableRes,
-            drawableEraserRes = drawableEraserRes,
+            colorDigitTintRes = colorDigitTintRes,
+            iconFingerPrintEnableRes = iconFingerPrintEnableRes,
+            iconFingerPrintDisableRes = iconFingerPrintDisableRes,
+            iconEraserRes = iconEraserRes,
+            drawableFingerPrintRes = backgroundFingerPrintRes,
+            colorFingerPrintTintRes = colorFingerPrintTintRes,
             onItemClickListener = { subject.onNext(it) }
         )
     }
@@ -122,6 +134,8 @@ abstract class PinCodeLayout<V : PinCodeView> : PinCodeView, BaseFrameLayout {
     override fun inflateLayout() {
         super.inflateLayout()
         pinCodeContainer.setBackgroundColor(context.resources.color(backgroundColorRes))
+        titleTextView.setTextColor(context.resources.color(colorDigitTintRes))
+        titleTextView.text = context.getString(titleRes)
     }
 
     @SuppressLint("CheckResult")
@@ -156,26 +170,42 @@ abstract class PinCodeLayout<V : PinCodeView> : PinCodeView, BaseFrameLayout {
         ).let {
             drawableDigitRes = it
         }
+        styledAttrs.getResourceId(
+            R.styleable.PinCodeLayout_colorDigitTint,
+            0
+        ).let {
+            colorDigitTintRes = it
+        }
 
         styledAttrs.getResourceId(
-            R.styleable.PinCodeLayout_drawableFingerPrintDisable,
+            R.styleable.PinCodeLayout_drawableFingerPrint,
             0
-        ).let { drawableFingerPrintDisableRes = it }
+        ).let { backgroundFingerPrintRes = it }
 
         styledAttrs.getResourceId(
-            R.styleable.PinCodeLayout_drawableFingerPrintEnable,
+            R.styleable.PinCodeLayout_iconFingerPrintDisable,
             0
-        ).let { drawableFingerPrintEnableRes = it }
+        ).let { iconFingerPrintDisableRes = it }
 
         styledAttrs.getResourceId(
-            R.styleable.PinCodeLayout_drawableEraser,
+            R.styleable.PinCodeLayout_colorFingerPrintTint,
             0
-        ).let { drawableEraserRes = it }
+        ).let { colorFingerPrintTintRes = it }
 
         styledAttrs.getResourceId(
-            R.styleable.PinCodeLayout_createPinCodeText,
+            R.styleable.PinCodeLayout_iconFingerPrintEnable,
             0
-        ).let { createPinCodeText = it }
+        ).let { iconFingerPrintEnableRes = it }
+
+        styledAttrs.getResourceId(
+            R.styleable.PinCodeLayout_iconEraser,
+            0
+        ).let { iconEraserRes = it }
+
+        styledAttrs.getResourceId(
+            R.styleable.PinCodeLayout_titleText,
+            0
+        ).let { titleRes = it }
 
         styledAttrs.getInteger(
             R.styleable.PinCodeLayout_maxDigits,
