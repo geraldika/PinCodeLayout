@@ -2,7 +2,9 @@ package com.carpe.pincodelayout.presentation
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
+import android.app.Activity
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.os.Build
 import android.util.AttributeSet
 import androidx.annotation.ColorRes
@@ -36,6 +38,8 @@ abstract class PinCodeLayout<V : PinCodeView> : PinCodeView, BaseFrameLayout {
 
 
     abstract val presenter: PinCodePresenter<V>
+
+    abstract val activity: Activity
 
     override val layoutResId: Int
         get() = R.layout.layout_pin_code
@@ -101,6 +105,14 @@ abstract class PinCodeLayout<V : PinCodeView> : PinCodeView, BaseFrameLayout {
         attrs?.let { setAttributes(it) }
     }
 
+    override fun showEnterPinCodeScreen() {
+        titleTextView.text = context.getString(titleRes)
+    }
+
+    override fun showCreatePinCodeScreen() {
+        titleTextView.text = context.getString(titleRes)
+    }
+
     override fun showDots(dots: List<Dot>) {
         dotsRecyclerView.layoutManager = LinearLayoutManager(context).apply {
             orientation = RecyclerView.HORIZONTAL
@@ -141,10 +153,16 @@ abstract class PinCodeLayout<V : PinCodeView> : PinCodeView, BaseFrameLayout {
     @SuppressLint("CheckResult")
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
+        activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         subject.subscribe { digit ->
             presenter.onNextDigit(digit)
         }
         presenter.initPinCodeView(maxDigit)
+    }
+
+    override fun onDetachedFromWindow() {
+        activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        super.onDetachedFromWindow()
     }
 
     private fun setAttributes(attrs: AttributeSet?) {

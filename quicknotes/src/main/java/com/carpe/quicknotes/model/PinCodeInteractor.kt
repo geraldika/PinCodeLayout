@@ -8,15 +8,24 @@ import javax.inject.Inject
 class PinCodeInteractor @Inject constructor(
     private val pinCodeRepository: PinCodeRepository
 ) : IPinCodeInteractor {
+
+    override fun isPinCodeExist(): Single<Boolean> {
+        return Single.just(true)
+    }
+
     override fun setCurrentTimeMs(): Completable {
-        TODO("Not yet implemented")
+        return Completable.complete()
     }
 
     override fun setPinCode(): Completable {
         return Completable.complete()
     }
 
-    override fun checkPinCode(): Single<Boolean> {
+    override fun createPinCode(pinCode: String): Single<Boolean> {
+        return Single.just(true)
+    }
+
+    override fun checkPinCode(pinCode: String): Single<Boolean> {
         return Single.just(true)
     }
 }

@@ -1,6 +1,7 @@
 package com.carpe.quicknotes.presentation
 
 import android.annotation.TargetApi
+import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
@@ -12,6 +13,9 @@ import toothpick.Scope
 import toothpick.Toothpick
 
 open class QuickNotesPinCodeLayout : PinCodeLayout<QuickNotesPincodeView>, QuickNotesPincodeView {
+
+    override val activity: Activity
+        get() = (context as Activity)
 
     constructor(context: Context) : super(context)
 
@@ -42,11 +46,15 @@ open class QuickNotesPinCodeLayout : PinCodeLayout<QuickNotesPincodeView>, Quick
         scope = Toothpick.openScopes(Scopes.Application)
     }
 
-    override fun showPinCodeSuccessfullySaved() {
-        TODO("Not yet implemented")
+    override fun showErrorWhilePinCodeValidation() {
+
     }
 
-    override fun showErrorWhilePinCode() {
-        TODO("Not yet implemented")
+    override fun showSuccessPinCodeCheck() {
+
+    }
+
+    override fun showSuccessPinCodeSave() {
+
     }
 }

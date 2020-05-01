@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:maxDigits="6"
+        app:maxDigits="4"
         app:titleText="@string/create_pin_code" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

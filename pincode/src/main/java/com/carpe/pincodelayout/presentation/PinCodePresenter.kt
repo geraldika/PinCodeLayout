@@ -16,13 +16,31 @@ open class PinCodePresenter<V : PinCodeView> constructor(
 
     protected open var pinCodeDigitsSize = 0
     protected open var pinCodeDigits = mutableListOf<Int>()
+    protected open var isPinCodeExist = false
 
+    @SuppressLint("CheckResult")
     open fun initPinCodeView(pinCodeDigitsSize: Int) {
         this.pinCodeDigitsSize = pinCodeDigitsSize
         val items = Utils.generatePinCodeItems()
         val dotsList = List<Dot>(pinCodeDigitsSize) { Dot() }
         viewState.showDots(dotsList)
         viewState.showPinCodeItems(items)
+
+        pinCodeInteractor
+            .isPinCodeExist()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ isExist ->
+                isPinCodeExist = isExist
+                if (isExist) {
+                    viewState.showEnterPinCodeScreen()
+                } else {
+                    viewState.showCreatePinCodeScreen()
+                }
+
+            }, { error ->
+                Log.e(TAG, "Error while pin code check", error)
+            })
     }
 
     @SuppressLint("CheckResult")
@@ -45,21 +63,41 @@ open class PinCodePresenter<V : PinCodeView> constructor(
         }
     }
 
-    @SuppressLint("CheckResult")
     protected open fun validatePinCode(digit: Int) {
         viewState.showActiveDot()
         pinCodeDigits.add(digit)
         if (pinCodeDigits.size == pinCodeDigitsSize) {
-            pinCodeInteractor
-                .checkPinCode()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-
-                }, { error ->
-                    Log.e(TAG, "Error while pin code check", error)
-                })
+            val pinCode = Utils.generatePinCodeString(pinCodeDigits)
+            if (isPinCodeExist) checkPinCode(pinCode)
+            else savePinCode(pinCode)
         }
+    }
+
+    @SuppressLint("CheckResult")
+    protected open fun savePinCode(pinCode: String) {
+        pinCodeInteractor
+            .createPinCode(Utils.generatePinCodeString(pinCodeDigits))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                viewState.showSuccessPinCodeSave()
+            }, { error ->
+                Log.e(TAG, "Error while creating pin code", error)
+            })
+    }
+
+    @SuppressLint("CheckResult")
+    protected open fun checkPinCode(pinCode: String) {
+        Utils.generatePinCodeString(pinCodeDigits)
+        pinCodeInteractor
+            .checkPinCode(Utils.generatePinCodeString(pinCodeDigits))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                viewState.showSuccessPinCodeCheck()
+            }, { error ->
+                Log.e(TAG, "Error while checking pin code", error)
+            })
     }
 
     companion object {
