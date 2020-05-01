@@ -1,7 +1,6 @@
 All you need is to add layout, inherited from PinCodeLayout in xml
 
-        ![Preview](https://github.com/geraldika/PinCodeLayout/blob/master/1ETfMLg0eI8.jpg)
- 
+
  <com.carpe.quicknotes.presentation.QuickNotesPinCodeLayout
         android:id="@+id/pinCodeLayout"
         android:layout_width="0dp"
