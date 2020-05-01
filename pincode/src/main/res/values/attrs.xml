@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PinCodeLayout">
+        <attr name="maxDigits" format="integer" />
+        <attr name="tintActive" format="reference" />
+        <attr name="tintInactive" format="reference" />
+        <attr name="backgroundColor" format="reference" />
+    </declare-styleable>
+</resources>

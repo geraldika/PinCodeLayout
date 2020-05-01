@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#587669</color>
     <color name="colorAccent">#87A092</color>
 <!--    A4C3B2-->
-    <color name="colorDigitText">#FBFFFC</color>
+    <color name="colorBasePinCodeItemTint">#FBFFFC</color>
     <color name="colorDigitNormalStroke">#CCE3DE</color>
     <color name="colorDigitPressedStroke">#F6FFF8</color>
     <color name="colorDigitPressedSolid">#EAF4F4</color>

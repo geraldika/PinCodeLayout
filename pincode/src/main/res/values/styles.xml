@@ -6,16 +6,27 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.DotImageView" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">@dimen/dot_size</item>
+        <item name="android:layout_height">@dimen/dot_size</item>
+        <item name="android:src">@drawable/background_digit_button</item>
+        <item name="tint">@color/colorBasePinCodeItemTint</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_margin">@dimen/dot_margin</item>
+    </style>
+
+
     <style name="AppTheme.PinCodeButton" parent="@style/Widget.AppCompat.Button.Borderless">
         <item name="android:layout_width">@dimen/digit_button_size</item>
         <item name="android:layout_height">@dimen/digit_button_size</item>
         <item name="android:background">@drawable/background_digit_button</item>
+        <item name="tint">@color/colorBasePinCodeItemTint</item>
         <item name="android:maxLines">1</item>
         <item name="android:textAllCaps">true</item>
         <!--  <item name="android:fontFamily">@font/open_sans_semibold</item>-->
         <item name="android:layout_margin">@dimen/digit_button_margin</item>
         <item name="android:textSize">@dimen/digit_button_text_size</item>
-        <item name="android:textColor">@color/colorDigitText</item>
+        <item name="android:textColor">@color/colorBasePinCodeItemTint</item>
     </style>
 
 </resources>
