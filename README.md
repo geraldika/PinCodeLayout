@@ -24,5 +24,7 @@ All you need is to add layout, inherited from PinCodeLayout in xml
         
         And override method initPresenterInstance() It makes you simple to use DI for injecting presenter
         
+        ![Preview](https://github.com/geraldika/PinCodeLayout/blob/master/1ETfMLg0eI8.jpg)
+        
     
         
