@@ -1,4 +1,4 @@
-package com.carpe.quicknotes.presentation
+package com.carpe.quicknotes.presentation.pincode
 
 import android.annotation.TargetApi
 import android.app.Activity
@@ -12,7 +12,8 @@ import com.carpe.quicknotes.di.Scopes
 import toothpick.Scope
 import toothpick.Toothpick
 
-open class QuickNotesPinCodeLayout : PinCodeLayout<QuickNotesPincodeView>, QuickNotesPincodeView {
+open class QuickNotesPinCodeLayout : PinCodeLayout<QuickNotesPincodeView>,
+    QuickNotesPincodeView {
 
     override val activity: Activity
         get() = (context as Activity)

@@ -40,8 +40,7 @@ class DotsAdapter(
     }
 
     fun updateDot(isActive: Boolean) {
-        val position =
-            if (isActive) items.indexOfFirst { it.isActive } else items.indexOfLast { !it.isActive }
+        val position = if (isActive) items.indexOfFirst { it.isActive } else items.indexOfLast { !it.isActive }
         if (position != RecyclerView.NO_POSITION) notifyItemChanged(position)
     }
 

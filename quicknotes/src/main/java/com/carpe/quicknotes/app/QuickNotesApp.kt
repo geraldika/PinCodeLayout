@@ -1,4 +1,4 @@
-package com.carpe.quicknotes
+package com.carpe.quicknotes.app
 
 import android.app.Application
 import com.carpe.quicknotes.di.AppModule

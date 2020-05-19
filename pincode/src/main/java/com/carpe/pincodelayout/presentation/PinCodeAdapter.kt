@@ -162,7 +162,6 @@ class FingerPrintViewHolder(
     override fun bind(item: PinCodeItem) {
         super.bind(item)
         with(itemView) {
-            fingerPrintImageView.background = context.drawable(drawableFingerPrintRes)
             val drawableRes = if ((item as PinCodeItem.FingerPrint).enable) {
                 iconFingerPrintEnableRes
             } else {

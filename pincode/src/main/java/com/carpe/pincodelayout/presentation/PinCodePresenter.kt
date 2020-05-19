@@ -58,7 +58,7 @@ open class PinCodePresenter<V : PinCodeView> constructor(
 
     protected open fun eraseDigit() {
         if (pinCodeDigits.isNotEmpty()) {
-            pinCodeDigits.removeAt(pinCodeDigits.last())
+            pinCodeDigits.removeAt(pinCodeDigits.last() - 1)
             viewState.showInactiveDot()
         }
     }

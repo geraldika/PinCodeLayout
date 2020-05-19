@@ -13,7 +13,7 @@ buildscript {
     ext {
         APPLICATION_ID = "app.carpe.quicknotes"
 
-        MINIMUM_SDK_VERSION = 19
+        MINIMUM_SDK_VERSION = 24
         TARGET_SDK_VERSION = 29
         COMPILE_SDK_VERSION = 29
         BUILD_TOOLS_VERSION = "29.0.2"
